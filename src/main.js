@@ -11,7 +11,17 @@ import axios from "axios"
 
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false
-
+// 全局mixin
+Vue.mixin({
+  data(){
+    return{
+      mixinAll:"全局mixin"
+    }
+  }
+})
+Vue.config.optionMergeStrategies.myOption = function(a,b){
+  return a +" - "+b
+}
 Vue.use(ElementUI)
 /* eslint-disable no-new */
 new Vue({

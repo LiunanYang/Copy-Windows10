@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import child from '@/components/child'
+import render from '@/components/render'
 
 Vue.use(Router)
 
@@ -16,6 +17,11 @@ export default new Router({
       path: '/child',
       name: 'child',
       component: child
+    },
+    {
+      path: '/render',
+      name: 'render',
+      component: render
     }
   ]
 })

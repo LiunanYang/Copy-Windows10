@@ -1,39 +1,37 @@
 <template>
   <div id="app">
     <!-- <child ref="child" :input-value="msg" @func="formChild"></child> -->
-    <p>vuex的值：{{ this.$store.state.count }}</p>
-    <button @click="add">父组件中 count+1</button>
-    <input type="text" v-model="num">
-    <button @click="addNum">count + {{num}}</button>
-    <button @click="addAsync">异步count+1</button>
-    
-    <!-- <h1>{{this.$store.getters.formatName}}</h1>
-    <h1>{{this.$store.getters.argsName("太可爱辣")}}</h1> -->
-    <h1>{{name}}</h1>
-    <h1>{{argsName1("太可爱辣")}}</h1>
-    <p>{{count}}</p>
-    <p>{{one}}</p>
-    <p>{{two}}</p>
-    <p>{{msgNew}}</p>
     <button @click="mockFn">试一试 mockjs</button>
+    <ul>
+      <li v-for="(i,v) in mockObj">{{i}}---{{v}}</li>
+    </ul>
   </div>
 </template>
 
 <script>
 import child from "./child"
 import Vue from "vue"
-import mixin from "@/mixin/mixin"
 import {mapState}from 'vuex'
 import {mapGetters}from 'vuex'
 export default {
   name: 'HelloWorld',
-  mixins:[mixin],
+  myOption: '组件里的myOption选项',
   data() {
     return{
       msg:"hello",
       num:0,
-      name:"data 中的name"
+      name:"data 中的name",
+      mockObj:{},
+      obj:{
+        name:"objB",
+        sayWorld(){
+          console.log('world')
+        }
+      }
     }
+  },
+  created(){
+    console.log(this.$options.myOption)
   },
   components:{
     // child:child
@@ -49,11 +47,13 @@ export default {
     ]),
     ...mapGetters({
       test:'formatCount',
-      name:'formatName',
       argsName1:'argsName'
     })
   },
   methods:{
+    merge(){
+      console.log(this.$options.myOption)
+    },
     add(){
       this.$store.commit('increment')
     },
@@ -85,7 +85,8 @@ export default {
       var url = '/mock';
       this.$axios.get(url)
         .then(res => {
-          console.log(res)
+          console.log(res.data.data)
+          this.mockObj = res.data.data
         })
         .catch(error => {
           console.log(error)

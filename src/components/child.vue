@@ -1,10 +1,7 @@
 <template>
   <div id="app">
-      <!-- <h1>我是子组件{{inputValue}}</h1> -->
-      <p>count:{{this.$store.state.count}}</p>
-      <button @click="add">子组件中 count+1</button>
-      <h1>{{this.$store.state.name}}</h1>
-      <h1>{{this.$store.getters.formatName}}</h1>
+      <h1>我是子组件{{inputValue}}</h1> 
+      <p>{{mixinAll}}</p>
   </div>
 </template>
 
@@ -22,7 +19,8 @@ export default {
   },
   data() {
     return{
-        name:"子组件"
+        name:"子组件",
+        mixinAll:"child 中的 mixinAll"
     }
   },
   methods:{
