@@ -6,7 +6,7 @@ import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import store from "./vuex/store"
-import '../mockDemo'
+import '@/mock/mockDemo'
 import axios from "axios"
 
 Vue.prototype.$axios = axios;
@@ -19,9 +19,10 @@ Vue.mixin({
     }
   }
 })
-Vue.config.optionMergeStrategies.myOption = function(a,b){
-  return a +" - "+b
-}
+// 自定义选项合并策略
+// Vue.config.optionMergeStrategies.data = function(a,b){
+//   return b
+// }
 Vue.use(ElementUI)
 /* eslint-disable no-new */
 new Vue({

@@ -1,45 +1,26 @@
 <template>
   <div id="app">
     <!-- <child ref="child" :input-value="msg" @func="formChild"></child> -->
-    <button @click="mockFn">试一试 mockjs</button>
-    <ul>
-      <li v-for="(i,v) in mockObj">{{i}}---{{v}}</li>
-    </ul>
+    <button @click="popOne">点击弹出1</button>
   </div>
 </template>
 
 <script>
 import child from "./child"
 import Vue from "vue"
-import {mapState}from 'vuex'
-import {mapGetters}from 'vuex'
+import {mapState} from 'vuex'
+import {mapGetters} from 'vuex'
 export default {
   name: 'HelloWorld',
-  myOption: '组件里的myOption选项',
   data() {
     return{
       msg:"hello",
-      num:0,
-      name:"data 中的name",
-      mockObj:{},
-      obj:{
-        name:"objB",
-        sayWorld(){
-          console.log('world')
-        }
-      }
     }
-  },
-  created(){
-    console.log(this.$options.myOption)
   },
   components:{
     // child:child
   },
   computed:{
-    msgNew(){
-      return this.msg + "~"
-    },
     ...mapState([
       'count',
       'one',
@@ -51,35 +32,9 @@ export default {
     })
   },
   methods:{
-    merge(){
-      console.log(this.$options.myOption)
+    popOne(){
+      alert("1")
     },
-    add(){
-      this.$store.commit('increment')
-    },
-    addNum(){
-      // this.$store.commit('addNum',{
-      //   num:parseInt(this.num)
-      // })
-      this.$store.commit({
-        type:'addNum',
-        num:parseInt(this.num)
-      })
-    },
-    // addAsync(){
-    //   this.$store.dispatch("incrementAsync",{
-    //     num:100
-    //   })
-    // }
-    addAsync(){
-      this.$store.dispatch({
-        type:"incrementAsync",
-        num:50
-      })
-    },
-    // addAsync(){
-    //   this.$store.dispatch("incrementAsync",50)
-    // }
     mockFn(){
       var loginMode = 'msdk';
       var url = '/mock';
@@ -93,34 +48,30 @@ export default {
         })
     }
   },
-  // beforeCreate(){
-  //   console.log("beforeCreate")
-  // },
-  // created(){
-  //   console.log("created")
-  // },
-  // beforeMount(){
-  //   console.log("beforeMount")
-  // },
-  // mounted(){
-  //   console.log("mounted")
-  // },
-  // beforeUpdate(){
-  //   console.log("beforeUpdate")
-  // },
-  // updated(){
-  //   console.log("updated")
-  // },
-  // beforeDestroy(){
-  //   console.log("beforeDestroy")
-  // },
-  // destroyed(){
-  //   console.log("destroyed")
-  // }
+  beforeCreate(){
+    console.log("--home--beforeCreate")
+  },
+  created(){
+    console.log("--home--created")
+  },
+  beforeMount(){
+    console.log("--home--beforeMount")
+  },
+  mounted(){
+    console.log("--home--mounted")
+  },
+  beforeUpdate(){
+    console.log("--home--beforeUpdate")
+  },
+  updated(){
+    console.log("--home--updated")
+  },
+  beforeDestroy(){
+    alert("确定退出?")
+    console.log("--home--beforeDestroy")
+  },
+  destroyed(){
+    console.log("--home--destroyed")
+  }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>

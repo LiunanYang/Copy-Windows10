@@ -1,14 +1,12 @@
 <template>
   <div id="app">
-      <h1>我是子组件{{inputValue}}</h1> 
-      <p>{{mixinAll}}</p>
+      <h1>我是子组件：{{inputValue}}</h1> 
   </div>
 </template>
 
 <script>
 import mixin from "@/mixin/mixin"
 export default {
-  mixins:[mixin],
   name: 'child',
   props:{
     inputValue:{
@@ -20,19 +18,39 @@ export default {
   data() {
     return{
         name:"子组件",
-        mixinAll:"child 中的 mixinAll"
     }
   },
   methods:{
       add(){
         this.$store.commit("increment")
       }
+  },
+    beforeCreate(){
+    console.log("--child--beforeCreate")
+  },
+  created(){
+    console.log("--child--created")
+  },
+  beforeMount(){
+    console.log("--child--beforeMount")
+  },
+  mounted(){
+    console.log("--child--mounted")
+  },
+  beforeUpdate(){
+    console.log("--child--beforeUpdate")
+  },
+  updated(){
+    console.log("--child--updated")
+  },
+  beforeDestroy(){
+    alert("确定退出?")
+    console.log("--child--beforeDestroy")
+  },
+  destroyed(){
+    console.log("--child--destroyed")
   }
+
   
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>

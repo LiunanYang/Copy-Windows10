@@ -1,6 +1,5 @@
 <template>
     <div id="container">
-        <p>{{mixinAll}}</p>
         <h1>
             <a href="#">
             Hello world!
@@ -75,6 +74,31 @@ export default{
         fn(){
             console.log(this.$slots)
         }
-    }
+    },
+      beforeCreate(){
+    console.log("--render--beforeCreate")
+  },
+  created(){
+    console.log("--render--created")
+  },
+  beforeMount(){
+    console.log("--render--beforeMount")
+  },
+  mounted(){
+    console.log("--render--mounted")
+  },
+  beforeUpdate(){
+    console.log("--render--beforeUpdate")
+  },
+  updated(){
+    console.log("--render--updated")
+  },
+  beforeDestroy(){
+    alert("确定退出?")
+    console.log("--render--beforeDestroy")
+  },
+  destroyed(){
+    console.log("--render--destroyed")
+  }
 }
 </script>   
